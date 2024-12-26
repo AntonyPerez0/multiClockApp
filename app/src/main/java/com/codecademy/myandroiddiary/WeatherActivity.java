@@ -19,7 +19,6 @@ import retrofit2.Response;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private static final String API_KEY = "ca17c3e266ecee6f68d97f0046d70bc3";
     private EditText cityEditText;
     private TextView weatherTextView;
 
@@ -43,14 +42,15 @@ public class WeatherActivity extends AppCompatActivity {
         });
 
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
+            Intent intent = new Intent(WeatherActivity.this, com.multiclock.app.MainActivity.class);
             startActivity(intent);
         });
     }
 
     private void fetchWeatherData(String cityName) {
+        String apiKey = BuildConfig.WEATHER_API_KEY;
         WeatherApiService apiService = RetrofitClient.getClient().create(WeatherApiService.class);
-        Call<WeatherResponse> call = apiService.getCurrentWeather(cityName, API_KEY, "metric");
+        Call<WeatherResponse> call = apiService.getCurrentWeather(cityName, apiKey, "metric");
 
         call.enqueue(new Callback<>() {
             @Override
