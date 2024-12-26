@@ -15,9 +15,9 @@ clock-out times and check the weather in your city.
    ```sh
    git clone https://github.com/AntonyPerez0/multiClockApp.git
 
-**Privacy Policy for [Your App Name]**
+**Privacy Policy for MultiClock**
 
-**Effective Date:** [Date]
+**Effective Date:** 12/26/2024
 
 **Introduction**
 
