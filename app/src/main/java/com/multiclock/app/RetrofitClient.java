@@ -1,4 +1,4 @@
-package com.multiclock.app.api;
+package com.multiclock.app;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

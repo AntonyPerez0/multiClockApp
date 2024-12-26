@@ -1,3 +1,12 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
+}
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -17,8 +26,12 @@ android {
         buildConfigField(
             "String",
             "WEATHER_API_KEY",
-            "\"${project.findProperty("WEATHER_API_KEY")}\""
+            "\"${localProperties.getProperty("WEATHER_API_KEY")}\""
         )
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {

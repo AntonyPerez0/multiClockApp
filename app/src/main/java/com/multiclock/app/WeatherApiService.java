@@ -1,6 +1,4 @@
-package com.multiclock.app.api;
-
-import com.multiclock.app.models.WeatherResponse;
+package com.multiclock.app;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

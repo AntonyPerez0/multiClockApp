@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.multiclock.app.api.RetrofitClient;
-import com.multiclock.app.api.WeatherApiService;
-import com.multiclock.app.models.WeatherResponse;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,17 +53,22 @@ public class WeatherActivity extends AppCompatActivity {
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    WeatherResponse weatherResponse = response.body();
-                    String city = weatherResponse.getCityName();
-                    float temperatureC = weatherResponse.getMain().getTemp();
-                    float temperatureF = (temperatureC * 9 / 5) + 32;
-                    String weatherInfo = "City: " + city + "\nTemperature: " + temperatureF + "°F";
-                    weatherTextView.setText(weatherInfo);
-                    Log.d("WeatherInfo", weatherInfo);
-                } else {
-                    weatherTextView.setText("Failed to retrieve weather data.");
-                    Log.e("WeatherError", "Response unsuccessful: " + response.errorBody());
+                try {
+                    if (response.isSuccessful() && response.body() != null) {
+                        WeatherResponse weatherResponse = response.body();
+                        String city = weatherResponse.getCityName();
+                        float temperatureC = weatherResponse.getMain().getTemp();
+                        float temperatureF = (temperatureC * 9 / 5) + 32;
+                        String weatherInfo = "City: " + city + "\nTemperature: " + temperatureF + "°F";
+                        weatherTextView.setText(weatherInfo);
+                        Log.d("WeatherInfo", weatherInfo);
+                    } else {
+                        String errorBody = response.errorBody().string();
+                        weatherTextView.setText("Failed to retrieve weather data.");
+                        Log.e("WeatherError", "Response unsuccessful: " + errorBody);
+                    }
+                } catch (IOException e) {
+                    Log.e("WeatherError", "Error reading error body", e);
                 }
             }
 

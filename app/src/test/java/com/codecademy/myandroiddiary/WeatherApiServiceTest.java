@@ -1,9 +1,7 @@
 package com.multiclock.app;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import com.codecademy.myandroiddiary.api.WeatherApiService;
-import com.codecademy.myandroiddiary.models.WeatherResponse;
 
 import org.junit.After;
 import org.junit.Before;

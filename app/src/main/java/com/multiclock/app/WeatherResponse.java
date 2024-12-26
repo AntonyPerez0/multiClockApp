@@ -1,4 +1,4 @@
-package com.multiclock.app.models;
+package com.multiclock.app;
 
 import com.google.gson.annotations.SerializedName;
 

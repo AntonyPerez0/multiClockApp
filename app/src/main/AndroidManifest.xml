@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MyAndroidDiary"
         tools:targetApi="31">
         <activity
-            android:name=".WeatherActivity"
+            android:name="com.multiclock.app.WeatherActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.multiclock.app.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
